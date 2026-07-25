@@ -1,0 +1,15 @@
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/.env
+/.env.*.local
+.DS_Store
+Thumbs.db
+*.log
+/.phpunit.result.cache
+/bootstrap/cache/packages.php
+/bootstrap/cache/services.php
+/tests/playwright/node_modules/
+/public/build/
