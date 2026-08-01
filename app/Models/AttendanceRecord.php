@@ -41,6 +41,19 @@ class AttendanceRecord extends Model
         ];
     }
 
+    /**
+     * Ensure minute-based fields are never negative.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (self $record) {
+            $record->late_minutes = max(0, (int) $record->late_minutes);
+            $record->early_leave_minutes = max(0, (int) $record->early_leave_minutes);
+            $record->break_minutes = max(0, (int) $record->break_minutes);
+            $record->overtime_minutes = max(0, (int) $record->overtime_minutes);
+        });
+    }
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(User::class, 'employee_id');

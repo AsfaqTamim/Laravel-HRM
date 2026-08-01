@@ -51,17 +51,19 @@ class EmployeeSeeder extends Seeder
         }
 
         // Create a sample employee
-        $employee = User::create([
-            'name' => 'Sample Employee',
-            'email' => 'employee@kassit.com',
-            'password' => bcrypt('password'),
-            'employee_code' => 'EMP-002',
-            'department_id' => $it->id,
-            'designation_id' => $dev->id,
-            'phone' => '+880-1712345679',
-            'hire_date' => '2025-06-01',
-            'salary' => 60000,
-            'is_active' => true,
-        ]);
+        $employee = User::firstOrCreate(
+            ['email' => 'employee@example.com'],
+            [
+                'name' => 'Sample Employee',
+                'password' => bcrypt('password'),
+                'employee_code' => 'EMP-002',
+                'department_id' => $it->id,
+                'designation_id' => $dev->id,
+                'phone' => '+880-1712345679',
+                'hire_date' => '2025-06-01',
+                'salary' => 60000,
+                'is_active' => true,
+            ]
+        );
     }
 }

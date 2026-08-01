@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('')
             ->login()
-            ->brandName('KASS IT HRM')
+            ->brandName('miniHRM HRM')
             ->sidebarCollapsibleOnDesktop()
             ->collapsibleNavigationGroups(true)
             ->sidebarWidth('14rem')

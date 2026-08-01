@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const BASE = 'http://160.25.226.41:8082';
-const EMP = { email: 'employee@kassit.com', password: 'password' };
+const EMP = { email: 'employee@example.com', password: 'password' };
 
 async function run() {
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
@@ -52,31 +52,31 @@ async function run() {
   // Go back to dashboard
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(1000);
-  
+
   // Look for Check In button
   const checkInBtn = page.locator('button:has-text("Check In")').first();
   if (await checkInBtn.count() > 0) {
     console.log('  ✅ Check In button found');
     await checkInBtn.click();
     await page.waitForTimeout(2000);
-    
+
     // After check-in
     const breakBtn = page.locator('button:has-text("Break")').first();
     console.log(`  ✅ After check-in: ${await breakBtn.count() > 0 ? 'Break visible' : 'Break missing'}`);
-    
+
     if (await breakBtn.count() > 0) {
       await breakBtn.click();
       await page.waitForTimeout(1000);
       const backBtn = page.locator('button:has-text("Back to Work")').first();
       console.log(`  ✅ After break: ${await backBtn.count() > 0 ? 'Back to Work visible' : 'Back to Work missing'}`);
-      
+
       if (await backBtn.count() > 0) {
         await backBtn.click();
         await page.waitForTimeout(1000);
         console.log(`  ✅ After returning: Break available again: ${(await page.locator('button:has-text("Break")').count()) > 0}`);
       }
     }
-    
+
     // Check out
     const checkOutBtn = page.locator('button:has-text("Check Out")').first();
     if (await checkOutBtn.count() > 0) {

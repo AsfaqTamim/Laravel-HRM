@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const BASE = 'http://160.25.226.41:8082';
-const EMP = { email: 'employee@kassit.com', password: 'password' };
+const EMP = { email: 'employee@example.com', password: 'password' };
 
 async function run() {
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
@@ -30,26 +30,26 @@ async function run() {
   const checkInBtn = page.locator('button:has-text("Check In")').first();
   const btnCount = await checkInBtn.count();
   check('Check In button exists in DOM', btnCount > 0);
-  
+
   if (btnCount > 0) {
     await checkInBtn.click();
     await page.waitForTimeout(2000);
     const after = await page.textContent('body');
-    
+
     check('Break button appeared after check-in', after.includes('Break'));
     check('Check Out button appeared after check-in', after.includes('Check Out'));
-    
+
     // Click Break
     const breakBtn = page.locator('button:has-text("Break")').first();
     const breakCount = await breakBtn.count();
     check('Break button exists', breakCount > 0);
-    
+
     if (breakCount > 0) {
       await breakBtn.click();
       await page.waitForTimeout(1000);
       const breakAfter = await page.textContent('body');
       check('Back to Work appeared after break start', breakAfter.includes('Back to Work'));
-      
+
       // Return from break
       const backBtn = page.locator('button:has-text("Back to Work")').first();
       if (await backBtn.count() > 0) {
@@ -58,7 +58,7 @@ async function run() {
         check('Break ended, Break button available again', (await page.textContent('body')).includes('Break'));
       }
     }
-    
+
     // Check Out
     const checkOutBtn = page.locator('button:has-text("Check Out")').first();
     if (await checkOutBtn.count() > 0) {

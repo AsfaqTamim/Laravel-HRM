@@ -30,7 +30,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>KASS IT HRM</h1>
+        <h1>miniHRM HRM</h1>
         <p>Payslip for {{ $payslip->payrollRun->label }}</p>
         <p><span class="badge badge-{{ $payslip->status }}">{{ ucfirst($payslip->status) }}</span></p>
     </div>
@@ -117,7 +117,7 @@
     </div>
 
     <div class="footer">
-        <p>Generated on {{ now()->format('d M Y, h:i A') }} | KASS IT HRM Payroll System</p>
+        <p>Generated on {{ now()->format('d M Y, h:i A') }} | miniHRM HRM Payroll System</p>
         <p>This is a computer-generated document.</p>
     </div>
 </body>

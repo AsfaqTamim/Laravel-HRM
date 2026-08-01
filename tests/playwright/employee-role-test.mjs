@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const BASE = 'http://160.25.226.41:8082';
-const EMP = { email: 'employee@kassit.com', password: 'password' };
+const EMP = { email: 'employee@example.com', password: 'password' };
 
 async function screenshot(page, name) {
   await page.screenshot({ path: `/home/hrm/tests/playwright/screenshots/emp-${name}.png`, fullPage: true });

@@ -10,10 +10,10 @@ async function run() {
   await page.goto(`${BASE}/login`);
   await page.waitForTimeout(2000);
 
-  await page.fill('#data\\.email', 'employee@kassit.com');
+  await page.fill('#data\\.email', 'employee@example.com');
   await page.fill('#data\\.password', 'password');
   await page.click('button[type="submit"]');
-  
+
   // Panel is at root path '' — after login we end up at /
   await page.waitForURL(url => !url.pathname.includes('/login'), { timeout: 15000 });
   await page.waitForTimeout(3000);

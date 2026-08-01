@@ -8,7 +8,7 @@ async function run() {
 
   await page.goto(`${BASE}/login`);
   await page.waitForTimeout(2000);
-  await page.fill('#data\\.email', 'employee@kassit.com');
+  await page.fill('#data\\.email', 'employee@example.com');
   await page.fill('#data\\.password', 'password');
   await page.click('button[type="submit"]');
   await page.waitForURL(url => !url.pathname.includes('/login'), { timeout: 15000 });
@@ -19,7 +19,7 @@ async function run() {
 
   const info = await page.evaluate(() => {
     const results = [];
-    
+
     // Find all fi-wi elements (widget columns)
     const widgets = document.querySelectorAll('.fi-wi');
     widgets.forEach((w, i) => {
@@ -80,7 +80,7 @@ async function run() {
 
     // Check what --cols-* css vars are set
     const style = getComputedStyle(document.documentElement);
-    
+
     return { results, cols: results };
   });
 

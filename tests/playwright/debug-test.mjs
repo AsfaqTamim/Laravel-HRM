@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const BASE = 'http://160.25.226.41:8082';
-const EMP = { email: 'employee@kassit.com', password: 'password' };
+const EMP = { email: 'employee@example.com', password: 'password' };
 
 async function run() {
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
